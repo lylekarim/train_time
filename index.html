@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Train Time Tracker</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
+    <!-- Moment.js Reference -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+
+
+
+    <style>
+        .container {
+            max-width: 960px;
+        }
+
+        .jumbotron {
+            padding: 2rem 2rem;
+        }
+
+        #train-table th,
+        td {
+            display: inline-block;
+            width: 20%;
+        }
+
+        .card-body {
+            background-color: #E0E0E0;
+
+        }
+
+
+
+        #train-form-title {
+
+            background-color: #DEDEDE;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100% !important;
+                min-width: 330px !important;
+            }
+
+            .row {
+                min-width: 400px;
+
+            }
+            .mobile-padding {
+
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Employee Tracker -->
+    <div class="container">
+
+
+        <!-- Jumbotron -->
+        <div class="jumbotron" style="background-color: gray; color: white">
+            <h1 class="text-center">Train Schedule</h1>
+        </div>
+        <div id="form-submit-message"></div>
+
+        <div class="row">
+
+            <div class="col-md-4 sm-12 ">
+                <!-- Add Train  -->
+
+                <!-- Entry Form -->
+                <div class="mx-auto card mb-4">
+                    <div id="train-form-title" class="card-header">
+                        <span class="h2">Add a New Train</span>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="train-name-input">Train Name</label>
+                                <input class="form-control" id="train-name-input" placeholder="Train Name" type="text">
+                            </div>
+                            <div class="form-group row">
+                                <label for="destination-input">Destination</label>
+                                <input class="form-control" id="destination-input" placeholder="Destination" type="text">
+                            </div>
+                            <div class="form-group row">
+                                <label for="train-time-input">First Train Time</label>
+                                <input class="form-control" id="train-time-input" placeholder="HH:mm" type="text">
+                            </div>
+                            <div class="form-group row">
+                                <label for="frequency-input">Frequency </label>
+                                <input class="form-control" id="frequency-input" placeholder="Frequency - min" type="text">
+                            </div>
+                            <button class="btn btn-primary float-right" id="add-train-btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 sm-12">
+
+                <!-- Current Trains-->
+                <div class="mx-auto card">
+                    <div class="card-header">
+                        <span class="h2">Current Trains</span>
+                    </div>
+
+                    <table class="table table-sm table-hover table-striped" id='train-table'>
+                        <thead>
+                            <tr>
+                                <th class="col">Train Name</th>
+                                <th class="col">Destination</th>
+                                <th class="col">Frequency </th>
+                                <th class="col">Next Arrival</th>
+                                <th class="col">Minutes Away</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <!-- train time Reference -->
+    <script src="assets/javascript/trainTime.js"></script>
+
+</body>
+
+</html>
