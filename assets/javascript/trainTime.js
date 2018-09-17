@@ -8,8 +8,8 @@
 
 // * Code this app to calculate when the next train will arrive; this should be relative to the current time.
 $(document).ready(function () {
-    // $("#train-name-input").val("");
-    // $("#train-name-input").removeClass("alert alert success");
+   //  $("#form-submit-message").hide("");
+   //  $("#form-submit-message").removeClass("alert alert success");
 
 
 // 1. Initialize Firebase
@@ -27,8 +27,8 @@ var config = {
   var database = firebase.database();
   
   // 2. Button for adding Trains
-  $("#add-train-btn").on("click", function() {
-   // event.preventDefault();
+  $("#add-train-btn").on("click", function(event) {
+   event.preventDefault();
   
     // Grabs user input
     var trainName = $("#train-name-input").val().trim();
@@ -53,16 +53,20 @@ var config = {
     console.log(newTrain.start);
     console.log(newTrain.frequency);
   
-   // alert("train successfully added");
   
-    $("#form-submit-message").text("Train successfully added!").addClass("alert success alert");
+    $("#form-submit-message").text("Train successfully added!").addClass("alert alert-success");
+
+    $("#form-submit-message").delay(2000).slideUp(200, function() {
+        $(this).alert('close').removeClass("alert alert-success");
+    });
+
 
     //Clears all of the text-boxes
- 
+    $("#train-name-input").val("");
     $("#destination-input").val("");
     $("#train-time-input").val("");
     $("#frequency-input").val("");
-    $("#form-submit-message").text("");
+
   });
   
   // 3. Create Firebase event for adding train to the database and a row in the html when a user adds an entry
@@ -121,7 +125,8 @@ console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
   
     // Append the new row to the table
     $("#train-table > tbody").append(newRow);
+  
   });
   
-
+  $("#form-submit-message").text("");
 })
