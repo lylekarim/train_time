@@ -10,22 +10,31 @@
 $(document).ready(function () {
    //  $("#form-submit-message").hide("");
    //  $("#form-submit-message").removeClass("alert alert success");
+  
+   //create login variables
+   var trainsReturned;
+   var userID;
+   var userName;
+   var trainNames = [];
+ 
 
 
 // 1. Initialize Firebase
 var config = {
-    apiKey: "AIzaSyAA89Se884k_LhKKY9GFcVOpRqFZp9aCEE",
-    authDomain: "july2018uofr.firebaseapp.com",
-    databaseURL: "https://july2018uofr.firebaseio.com",
-    projectId: "july2018uofr",
-    storageBucket: "july2018uofr.appspot.com",
-    messagingSenderId: "266739656289"
+  apiKey: "AIzaSyD5dQvWPPxXUdaqd_dyz-0VvLghEfRbOHI",
+  authDomain: "train-time-a1bc7.firebaseapp.com",
+  databaseURL: "https://train-time-a1bc7.firebaseio.com",
+  projectId: "train-time-a1bc7",
+  storageBucket: "train-time-a1bc7.appspot.com",
+  messagingSenderId: "115613693349"
   };
   
   firebase.initializeApp(config);
   
   var database = firebase.database();
-  
+  //log in toggle variable
+  var toggleBoolean = false;
+
   // 2. Button for adding Trains
   $("#add-train-btn").on("click", function(event) {
    event.preventDefault();
@@ -47,6 +56,21 @@ var config = {
     // Uploads train data to the database
     database.ref().push(newTrain);
   
+
+  //This adds the chosen wine to the database
+  function updateDatabase(userID, train, destination) {
+    var updates = {
+      name: trainName,
+      destination: trainDestination,
+      start: trainStart,
+      frequency: trainFrequency
+    };
+    database.ref("users/" + userID + "/trains").push(updates);
+  }
+
+
+
+
     // Logs everything to console
     console.log(newTrain.name);
     console.log(newTrain.destination);
@@ -129,4 +153,74 @@ console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
   });
   
   $("#form-submit-message").text("");
+
+
+ // begin login scripts
+ firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+
+      $("#schedule").show();
+      $("#sign-in").hide();
+      $("#create-user-form").hide();
+
+  } else {
+
+      $("#schedule").hide();
+      $("#sign-in").show();
+      $("#create-user-form").hide();
+
+  }
+});
+
+function signInToggle() {
+  if (toggleBoolean) {
+      $("#schedule").hide();
+      $("#sign-in").show();
+      $("#create-user-form").hide();
+      toggleBoolean = false;
+  } else {
+      $("#schedule").hide();
+      $("#sign-in").hide();
+      $("#create-user-form").show();
+      toggleBoolean = true;
+  }
+
+}
+
+function createUser() {
+  var email = $("#inputEmailCreate").val();
+  var password = $("#inputPasswordCreate").val();
+  console.log(email, password);
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      window.alert(errorMessage);
+  });
+}
+
+function signIn() {
+  var passwordSign = $("#inputPassword").val();
+  var emailSign = $("#inputEmail").val();
+  firebase.auth().signInWithEmailAndPassword(emailSign, passwordSign).catch(function (error) {
+      // Handle Errors here.
+      var errorCode2 = error.code;
+      var errorMessage2 = error.message;
+      window.alert(errorMessage2);
+  });
+}
+
+
+
+function logOut() {
+  firebase.auth().signOut();
+}
+
+
+$("#user-login").on("click", signIn);
+$("#create-user").on("click", signInToggle);
+$("#user-create").on("click", createUser);
+$("#sign-in-page").on("click", signInToggle);
+$("#logout").on("click", logOut);
+
 })

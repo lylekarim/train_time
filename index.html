@@ -19,23 +19,76 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 
-
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.4.1/firebaseui.css" />
 
     <style>
-      
+        input {
+
+          margin:10px;
+      }
     </style>
 </head>
 
 <body>
 
+    <div class="row d-flex justify-content-center">
+          
+        <div class="col-md-4">
+
+
+            <div id="sign-in">
+                <!-- <form class="form-signin" action="index.html" method="post"> -->
+                     
+                        <div class="jumbotron" style="background-color: gray; color: white;">
+                                <h1 class="h3 mb-0 font-weight-normal">Willkommen to Train Time</h1>
+                            </div>
+
+              
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="user-login">Sign in</button>
+
+
+                <p id="dont">Don't have an account?
+                    <button class="btn btn-lg btn-primary btn-block" id="create-user">Create Account</button>
+                </p>
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-md-4">
+            <div id="create-user-form">
+                <!-- <form class="form-signin" action="index.html" method="post"> -->
+                <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
+                <label for="inputEmailCreate" class="sr-only">Email address</label>
+                <input type="email" id="inputEmailCreate" class="form-control" placeholder="Email address" required
+                    autofocus>
+                <label for="inputPasswordCreate" class="sr-only">Create Password</label>
+                <input type="password" id="inputPasswordCreate" class="form-control" placeholder="Create Password"
+                    required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="user-create">Submit</button>
+                <p id="already">Already have an account?
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" id="sign-in-page">Sign in</button>
+                </p>
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
     <!-- Employee Tracker -->
-    <div class="container">
+    <div id="schedule" class="container">
 
 
         <!-- Jumbotron -->
         <div class="jumbotron" style="background-color: gray; color: white">
             <h1 class="text-center">Train Schedule</h1>
         </div>
+        <button class="btn btn-lg btn-primary" style="float:right;" id="logout">Logout</button>
+
         <div id="form-submit-message"></div>
 
         <div class="row">
