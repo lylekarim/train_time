@@ -38,14 +38,9 @@ var config = {
   // 2. Button for adding Trains
   $("#add-train-btn").on("click", function(event) {
 
-    var $trainForm = $('#trainForm');
-
-if(! $trainForm[0].checkValidity()) {
-  // If the form is invalid, submit it. The form won't actually submit;
-  // this will just cause the browser to display the native HTML5 error messages.
-  $trainForm.find(':submit').click()
-}
-   event.preventDefault();
+    var isvalidate = $("#trainForm")[0].checkValidity();
+    if (isvalidate) {
+      event.preventDefault();
   
     // Grabs user input
     var trainName = $("#train-name-input").val().trim();
@@ -99,7 +94,8 @@ if(! $trainForm[0].checkValidity()) {
     $("#destination-input").val("");
     $("#train-time-input").val("");
     $("#frequency-input").val("");
-
+    
+  }
   });
   
   // 3. Create Firebase event for adding train to the database and a row in the html when a user adds an entry
