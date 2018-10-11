@@ -27,9 +27,12 @@
           margin:10px;
       }
     </style>
+    
 </head>
 
 <body>
+
+
 
     <div class="row d-flex justify-content-center">
           
@@ -61,7 +64,7 @@
     </div>
     <div class="row d-flex justify-content-center">
 
-        <div class="col-md-4">
+        <div class="col-md-8">
             <div id="create-user-form">
                 <!-- <form class="form-signin" action="index.html" method="post"> -->
                 <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
@@ -87,13 +90,13 @@
         <div class="jumbotron" style="background-color: gray; color: white">
             <h1 class="text-center">Train Schedule</h1>
         </div>
-        <button class="btn btn-lg btn-primary" style="float:right;" id="logout">Logout</button>
+        <button class="btn btn-lg btn-primary" id="logout">Logout</button>
 
         <div id="form-submit-message"></div>
 
         <div class="row">
 
-            <div class="col-md-4 sm-12 ">
+            <div class="col-md-4 col-sm-12 ">
                 <!-- Add Train  -->
 
                 <!-- Entry Form -->
@@ -102,24 +105,24 @@
                         <span class="h2">Add a New Train</span>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form id="trainForm">
                             <div class="form-group row">
                                 <label for="train-name-input">Train Name</label>
-                                <input class="form-control" id="train-name-input" placeholder="Train Name" type="text">
+                                <input class="form-control" id="train-name-input" placeholder="Train Name" type="text" required>
                             </div>
                             <div class="form-group row">
                                 <label for="destination-input">Destination</label>
-                                <input class="form-control" id="destination-input" placeholder="Destination" type="text">
+                                <input class="form-control" id="destination-input" placeholder="Destination" type="text" required>
                             </div>
                             <div class="form-group row">
                                 <label for="train-time-input">First Train Time</label>
-                                <input class="form-control" id="train-time-input" placeholder="HH:mm" type="text">
+                                <input  class="form-control" id="train-time-input" placeholder="HH:mm" type="text" required>
                             </div>
                             <div class="form-group row">
                                 <label for="frequency-input">Frequency </label>
-                                <input class="form-control" id="frequency-input" placeholder="Frequency - min" type="text">
+                                <input class="form-control" id="frequency-input" placeholder="Frequency - min" type="text" required>
                             </div>
-                            <button class="btn btn-primary float-right" id="add-train-btn">Submit</button>
+                            <button type="submit" class="btn btn-primary float-right" id="add-train-btn">Submit</button>
                         </form>
                     </div>
                 </div>

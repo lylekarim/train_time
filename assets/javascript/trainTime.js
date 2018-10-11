@@ -37,6 +37,14 @@ var config = {
 
   // 2. Button for adding Trains
   $("#add-train-btn").on("click", function(event) {
+
+    var $trainForm = $('#trainForm');
+
+if(! $trainForm[0].checkValidity()) {
+  // If the form is invalid, submit it. The form won't actually submit;
+  // this will just cause the browser to display the native HTML5 error messages.
+  $trainForm.find(':submit').click()
+}
    event.preventDefault();
   
     // Grabs user input
@@ -52,6 +60,7 @@ var config = {
         start: trainStart,
         frequency: trainFrequency
     };
+
   
     // Uploads train data to the database
     database.ref().push(newTrain);
